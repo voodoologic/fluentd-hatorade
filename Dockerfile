@@ -19,15 +19,16 @@ RUN apt-get update -y && apt-get install -y \
               zlib1g-dev \
         && rm -rf /var/lib/apt/lists/*
 
-# Install ruby 2.2.3
-RUN curl -O http://ftp.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz && \
-    tar -zxvf ruby-2.2.3.tar.gz && \
-    cd ruby-2.2.3 && \
+# Install ruby
+ENV RUBY_VERSION=2.2.3
+RUN curl -O http://ftp.ruby-lang.org/pub/ruby/2.2/ruby-${RUBY_VERSION}.tar.gz && \
+    tar -zxvf ruby-${RUBY_VERSION}.tar.gz && \
+    cd ruby-${RUBY_VERSION} && \
     ./configure --disable-install-doc --enable-shared && \
     make && \
     make install && \
     cd .. && \
-    rm -r ruby-2.2.3 ruby-2.2.3.tar.gz && \
+    rm -r ruby-${RUBY_VERSION} ruby-${RUBY_VERSION}.tar.gz && \
     echo 'gem: --no-document' > /usr/local/etc/gemrcdoc
 
 # for log storage (maybe shared with host)
