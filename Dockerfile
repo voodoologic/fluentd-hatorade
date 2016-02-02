@@ -41,6 +41,7 @@ RUN gem install fluentd
 RUN gem install fluent-plugin-elasticsearch
 
 COPY fluent.conf /fluentd/etc/
+COPY docker-container /etc/logrotate.d/
 ONBUILD COPY fluent.conf /fluentd/etc/
 ONBUILD COPY plugins /fluentd/plugins/
 
@@ -50,6 +51,6 @@ ENV FLUENTD_OPT=""
 ENV FLUENTD_CONF="fluent.conf"
 
 EXPOSE 24224
-
+RUN logrotate -fv /etc/logrotate.d/docker-container
 ### docker run -p 24224 -v `pwd`/log: -v `pwd`/log:/root/log fluent/fluentd:latest
 CMD exec fluentd -c /fluentd/etc/$FLUENTD_CONF -p /fluentd/plugins $FLUENTD_OPT
