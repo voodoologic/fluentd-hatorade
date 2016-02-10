@@ -1,5 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER Doug Headley <headley.douglas@gmail.com>
+LABEL hatorade-fluentd
 
 LABEL Description="Fluentd docker image" Vendor="Fluent Organization" Version="1.0"
 
