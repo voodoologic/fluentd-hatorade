@@ -8,7 +8,7 @@ RUN apt-get install -y build-essential curl zlib1g-dev zlib1g zlibc openssl libs
 ENV CONFIGURE_OPTS --disable-install-rdoc
 # Install ruby
 ENV RUBY_VERSION=2.4.2
-RUN curl -O http://ftp.ruby-lang.org/pub/ruby/2.2/ruby-${RUBY_VERSION}.tar.gz && \
+RUN curl -O http://ftp.ruby-lang.org/pub/ruby/2.4/ruby-${RUBY_VERSION}.tar.gz && \
     tar -zxvf ruby-${RUBY_VERSION}.tar.gz && \
     cd ruby-${RUBY_VERSION} && \
     ./configure --disable-install-doc --enable-shared && \
